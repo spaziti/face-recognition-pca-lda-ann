@@ -2,6 +2,8 @@
 ![OpenCV](https://img.shields.io/badge/OpenCV-Computer_Vision-green)
 ![Machine Learning](https://img.shields.io/badge/Machine-Learning-orange)
 ![Status](https://img.shields.io/badge/Status-Completed-success)
+![GitHub Repo stars](https://img.shields.io/github/stars/YOURUSERNAME/REPO)
+
 
 # face-recognition-pca-lda-ann
 End-to-end Face Recognition ML pipeline using OpenCV, PCA Eigenfaces, LDA and ANN with real dataset testing.
