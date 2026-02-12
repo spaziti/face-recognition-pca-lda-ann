@@ -6,10 +6,8 @@ from sklearn.neural_network import MLPClassifier
 import numpy as np
 import os, cv2
 
-
-# =============================
 # Helper Function
-# =============================
+
 def plot_gallery(images, titles, h, w, n_row=3, n_col=4):
 
     plt.figure(figsize=(1.8 * n_col, 2.4 * n_row))
@@ -22,10 +20,8 @@ def plot_gallery(images, titles, h, w, n_row=3, n_col=4):
         plt.xticks(())
         plt.yticks(())
 
-
-# =============================
 # Dataset Loading (Training Faces)
-# =============================
+
 dir_name = "dataset/faces/"
 
 y = []
@@ -63,10 +59,8 @@ print("Dataset Loaded")
 print("Samples:", n_samples)
 print("Classes:", len(class_names))
 
-
-# =============================
 # Load Imposters
-# =============================
+
 imposter_dir = "dataset/imposters/"
 imposter_x = []
 
@@ -87,9 +81,9 @@ imposter_x = imposter_x / 255.0
 
 print("Imposter Samples:", imposter_x.shape)
 
-# =============================
+
 # Show Imposter Images
-# =============================
+
 
 print("\nShowing Imposter Images...")
 
@@ -110,17 +104,15 @@ else:
     plt.tight_layout()
     plt.show()
 
-# =============================
+
 # Train Test Split
-# =============================
+
 x_train, x_test, y_train, y_test = train_test_split(
     x, y, test_size=0.40, random_state=42
 )
 
-
-# =============================
 # Accuracy vs K Experiment
-# =============================
+
 k_values = [20, 50, 80, 100, 120, 150]
 accuracies = []
 
@@ -163,9 +155,9 @@ for k in k_values:
         best_lda = lda
 
 
-# =============================
+
 # Plot Accuracy vs K Graph
-# =============================
+
 plt.figure()
 plt.plot(k_values, accuracies, marker='o')
 plt.xlabel("PCA Components (k)")
@@ -174,18 +166,18 @@ plt.title("Accuracy vs PCA Components")
 plt.show()
 
 
-# =============================
+
 # Show Eigenfaces (Best PCA)
-# =============================
+
 eigenfaces = best_pca.components_.reshape((-1, h, w))
 titles = ["Eigenface %d" % i for i in range(len(eigenfaces))]
 plot_gallery(eigenfaces, titles, h, w)
 plt.show()
 
 
-# =============================
+
 # Final Prediction (Best Model)
-# =============================
+
 x_test_pca = best_pca.transform(x_test)
 x_test_lda = best_lda.transform(x_test_pca)
 
